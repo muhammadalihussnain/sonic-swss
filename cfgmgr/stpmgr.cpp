@@ -333,6 +333,7 @@ void StpMgr::doStpVlanTask(Consumer &consumer)
 
         it = consumer.m_toSync.erase(it);
     }
+    //hi
 }
 
 void StpMgr::processStpVlanPortAttr(const string op, uint32_t vlan_id, const string intfName,
