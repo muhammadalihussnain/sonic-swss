@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// initial code for mst swss
+
 #include "exec.h"
 #include "stpmgr.h"
 #include "logger.h"
@@ -65,9 +67,13 @@ void StpMgr::doTask(Consumer &consumer)
     SWSS_LOG_INFO("Get task from table %s", table.c_str());
 
     if (table == CFG_STP_GLOBAL_TABLE_NAME)
+    {
         doStpGlobalTask(consumer);
+    }
     else if (table == CFG_STP_VLAN_TABLE_NAME)
+    {
         doStpVlanTask(consumer);
+    }
     else if (table == CFG_STP_VLAN_PORT_TABLE_NAME)
         doStpVlanPortTask(consumer);
     else if (table == CFG_STP_PORT_TABLE_NAME)
@@ -324,7 +330,7 @@ void StpMgr::doStpVlanTask(Consumer &consumer)
             msg->opcode = STP_DEL_COMMAND;
             msg->inst_id = m_vlanInstMap[vlan_id];
 
-            deallocL2Instance(vlan_id);
+            deallocL2Instance(vlan_id); 
         }
         
         sendMsgStpd(STP_VLAN_CONFIG, len, (void *)msg);
